@@ -3,9 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
-  templateUrl: 'favoritos.html'
+  templateUrl: 'src/pages/Inicio/inicio.html'
 })
-export class FavoritosPage {
+export class InicioPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
@@ -30,7 +30,7 @@ export class FavoritosPage {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(FavoritosPage, {
+    this.navCtrl.push(InicioPage, {
       item: item
     });
   }

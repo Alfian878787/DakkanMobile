@@ -7,6 +7,7 @@ import { PerfilPage } from '../pages/Perfil/perfil';
 import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
+import { InicioPage} from '../pages/Inicio/inicio';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,7 @@ import { AjustesPage} from '../pages/Ajustes/ajustes';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PerfilPage;
+  rootPage: any = InicioPage;
 
   pages: Array<{title: string, component: any}>;
 

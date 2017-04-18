@@ -7,6 +7,7 @@ import { PerfilPage } from '../pages/Perfil/perfil';
 import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
+import { InicioPage} from '../pages/Inicio/inicio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PerfilPage,
     MessagesPage,
     FavoritosPage,
-    AjustesPage
+    AjustesPage,
+    InicioPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PerfilPage,
     MessagesPage,
     FavoritosPage,
-    AjustesPage
+    AjustesPage,
+    InicioPage
   ],
   providers: [
     StatusBar,
