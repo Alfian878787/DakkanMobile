@@ -1,23 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>List</ion-title>
+    <ion-title>Dakkan</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
+
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+
+    <ion-item >
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text"  [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password"  [(ngModel)]="pass"></ion-input>
+    </ion-item>
+
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <div text-center=""><button ion-button round (click)="login();">Iniciar Sesión</button></div>
+  <div text-center=""><button ion-button color="secondary" round (click)="register();">Registrarse</button></div>
+
+
 </ion-content>

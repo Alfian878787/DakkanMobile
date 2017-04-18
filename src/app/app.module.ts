@@ -8,9 +8,11 @@ import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
 import { InicioPage} from '../pages/Inicio/inicio';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {HttpModule} from "@angular/http";
+import {AnunciosPage} from '../pages/Anuncios/anuncios';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MessagesPage,
     FavoritosPage,
     AjustesPage,
-    InicioPage
+    InicioPage,
+    AnunciosPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,12 +36,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MessagesPage,
     FavoritosPage,
     AjustesPage,
-    InicioPage
+    InicioPage,
+    AnunciosPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
+
   ]
 })
 export class AppModule {}

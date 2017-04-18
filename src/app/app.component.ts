@@ -2,12 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { PerfilPage } from '../pages/Perfil/perfil';
 import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
 import { InicioPage} from '../pages/Inicio/inicio';
+
 
 @Component({
   templateUrl: 'app.html'
