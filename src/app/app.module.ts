@@ -15,7 +15,7 @@ import {AnunciosPage} from '../pages/Anuncios/anuncios';
 import {AnuncioPage} from '../pages/Anuncio/anuncio';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
-import { GoogleMap } from '@ionic-native/google-maps';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 
 @NgModule({
@@ -52,7 +52,7 @@ import { GoogleMap } from '@ionic-native/google-maps';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    GoogleMap
+    GoogleMaps
   ]
 })
 export class AppModule {}

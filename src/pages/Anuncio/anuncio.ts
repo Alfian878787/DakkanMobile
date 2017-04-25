@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
+import {GoogleMap, GoogleMaps} from "@ionic-native/google-maps";
 
 
 @Component({
@@ -12,16 +13,20 @@ export class AnuncioPage {
   adv:any;
   timestamp:any;
   date:any;
+  map:GoogleMap;
 
-
-  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
+  constructor(private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
    this.timestamp = this.adv.id.toString().substring(0,8);
    this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 ).toLocaleDateString();
-
-
+    platform.ready().then(() => {
+      this.loadMap();
+    });
   }
 
+  loadMap(){
+    this.map = new GoogleMap('map');
+  }
   goodToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
