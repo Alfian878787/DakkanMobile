@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {NavController, NavParams, Platform, ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
+
 
 @Component({
   selector: 'page-list',
@@ -9,10 +10,18 @@ import {Http} from "@angular/http";
 })
 export class AnuncioPage {
   adv:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
+  timestamp:any;
+  date:any;
+
+
+  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
+   this.timestamp = this.adv.id.toString().substring(0,8);
+   this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 ).toLocaleDateString();
+
 
   }
+
   goodToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
@@ -27,23 +36,12 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://10.193.155.95:3500/addfavorite",data2).subscribe(
-          result=>{if(result.text()="asd"){
+        this.http.post("http://10.193.155.95:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+          result=>{if(result="Added to favorites"){
             this.goodToast("Añadido a favoritos!")}},
           error=>this.goodToast("Vaya...")
         );
       }
-    });
-
-
-  }
-
-
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(AnuncioPage, {
-      item: item
     });
   }
 }

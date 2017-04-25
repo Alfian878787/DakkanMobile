@@ -6,13 +6,13 @@
     <ion-title>Anuncios</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content no-margin="">
 
-  <ion-grid>
-    <ion-row *ngFor="let row of grid">
-      <ion-col width-50 *ngFor="let image of row">
-        <div *ngIf="image!=null">
-          <ion-card>
+  <ion-grid >
+    <ion-row *ngFor="let row of grid" no-margin="" no-padding="" style="height:100%">
+      <ion-col  width-50 *ngFor="let image of row" no-margin="" no-padding="" style="height:100%">
+        <div *ngIf="image!=null" no-margin="" no-padding="" style="height:100%">
+          <ion-card no-margin=""  style="height:100%">
             <img src="http://10.193.155.95:3500/img/advs/{{image.imageurl}}.png" (click)="detalle(image);">
             <ion-card-content>
               <ion-card-title>

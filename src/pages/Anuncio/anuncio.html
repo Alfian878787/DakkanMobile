@@ -12,13 +12,13 @@
 
     <ion-item>
       <ion-avatar item-left>
-        <img src="http://10.193.155.95:3500/img/advs/{{adv.imageurl}}.png">
+        <img src="http://10.193.155.95:3500/img/profiles/{{adv.owner}}.png">
       </ion-avatar>
-      <h2>{{adv.owner}}</h2>
-      <p>November 5, 1955</p>
+      <h2>{{adv.ownername}}</h2>
+      <p>Lugar donde se vende</p>
     </ion-item>
 
-    <img src="http://10.193.155.95:3500/img/advs/{{adv.imageurl}}.png">
+    <img src="http://10.193.155.95:3500/img/advs/150x/{{adv.imageurl}}.png">
 
     <ion-card-content>
       <h3>{{adv.title}}</h3>
@@ -29,22 +29,22 @@
       <ion-col>
         <button ion-button icon-left clear small (click)="favorito();">
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>Add to favourites</div>
+          <div>Favourite</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
+          <div>Send Message</div>
         </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          11h ago
+          Publicado el {{date}}
         </ion-note>
       </ion-col>
     </ion-row>
-
+    <div id="map"></div>
   </ion-card>
 
 </ion-content>

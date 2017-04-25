@@ -14,6 +14,8 @@ import {HttpModule} from "@angular/http";
 import {AnunciosPage} from '../pages/Anuncios/anuncios';
 import {AnuncioPage} from '../pages/Anuncio/anuncio';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera';
+import { GoogleMap } from '@ionic-native/google-maps';
 
 
 @NgModule({
@@ -25,13 +27,14 @@ import { IonicStorageModule } from '@ionic/storage';
     AjustesPage,
     InicioPage,
     AnunciosPage,
-    AnuncioPage
+    AnuncioPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,8 +51,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-
-
+    Camera,
+    GoogleMap
   ]
 })
 export class AppModule {}
