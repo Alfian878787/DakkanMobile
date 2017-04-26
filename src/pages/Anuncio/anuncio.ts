@@ -3,7 +3,7 @@ import {NavController, NavParams, Platform, ToastController} from 'ionic-angular
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import {GoogleMap, GoogleMaps} from "@ionic-native/google-maps";
-
+import {OPerfilPage} from "../OPerfil/operfil";
 
 @Component({
   selector: 'page-list',
@@ -34,6 +34,10 @@ export class AnuncioPage {
       position: 'top'
     });
     toast.present();
+  }
+
+  oprofile(){
+    this.navCtrl.push(OPerfilPage,{adv:this.adv})
   }
 
   favorito(){

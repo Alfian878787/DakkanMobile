@@ -29,8 +29,6 @@ export class PerfilPage {
     this.showCloseBtn = false;
   }
 
-
-
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',

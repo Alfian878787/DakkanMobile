@@ -16,6 +16,7 @@ import {AnuncioPage} from '../pages/Anuncio/anuncio';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import {OPerfilPage} from "../pages/OPerfil/operfil";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     InicioPage,
     AnunciosPage,
     AnuncioPage,
+    OPerfilPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     AjustesPage,
     InicioPage,
     AnunciosPage,
-    AnuncioPage
+    AnuncioPage,
+    OPerfilPage
   ],
   providers: [
     StatusBar,
