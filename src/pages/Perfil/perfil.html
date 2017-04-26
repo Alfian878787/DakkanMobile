@@ -8,10 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-  <button (click)="presentActionSheet()">Take a Picture</button>
-  <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
-  Latest Picture:
-  <img [src]="base64Image" *ngIf="base64Image" />
-  <button (click)="upload()"> Upload</button>
+  <div text-center=""><button ion-button round (click)="updateName();">Cambiar nombre</button></div>
+
+  <div text-center=""><button ion-button round (click)="updatePass();">Cambiar constraseña</button></div>
+
+  <div text-center=""><button ion-button round (click)="presentActionSheet()">Cambiar imagen perfil</button></div>
+  <img [src]="base64Image" *ngIf="base64Image" sizes="300x" />
+  <div text-center=""><button ion-button icon-right *ngIf="showCloseBtn" (click)="upload()"><ion-icon name="checkmark-circle"></ion-icon> Subir imagen </button></div>
 
 </ion-content>
