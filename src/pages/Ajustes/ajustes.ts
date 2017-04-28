@@ -195,8 +195,6 @@ export class AjustesPage {
         this.img.append('file',this.img64);
         this.img.append('id',data._id);
 
-
-
         this.http.post("http://10.193.155.95:3500/upload",this.img).map(res=>res.toString()).subscribe(
           result=>{if(result="File is uploades"){
             this.goodToast("Imagen de perfil actualizada")}},

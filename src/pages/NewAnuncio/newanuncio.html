@@ -22,18 +22,19 @@
 
     <ion-item>
       <ion-label floating>Qué se busca a cambio </ion-label>
-      <ion-input type="text"  [(ngModel)]="exchange"></ion-input>
+      <ion-input type="text" [(ngModel)]="exchange"></ion-input>
     </ion-item>
-
+<ion-list>
     <ion-item>
     <ion-label>Elige una categoria</ion-label>
-    <ion-select [(ngModel)]="category">
+    <ion-select [(ngModel)]="category" interface="action-sheet">
       <ion-option value="Deportes">Deportes</ion-option>
       <ion-option value="Hogar">Hogar</ion-option>
       <ion-option value="Ocio">Ocio</ion-option>
       <ion-option value="Salud">Salud</ion-option>
     </ion-select>
     </ion-item>
+</ion-list>
   </ion-list>
 
   <div text-center=""><button ion-button large color="dark" clear icon-only (click)="presentActionSheet()">

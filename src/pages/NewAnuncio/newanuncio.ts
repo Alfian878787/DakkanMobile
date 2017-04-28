@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  NavController, NavParams, ToastController, AlertController, ActionSheetController, Loading,
+  NavController, ToastController, AlertController, ActionSheetController, Loading,
   LoadingController
 } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
@@ -30,7 +30,7 @@ export class NewAnuncioPage {
   }
 
   close(){
-    this.navCtrl.setRoot(AnunciosPage);
+    this.navCtrl.setRoot(AnunciosPage,"hola",{animate:true, direction:'back'});
   }
 
   public presentActionSheet() {
@@ -84,14 +84,44 @@ export class NewAnuncioPage {
     toast.present();
   }
 
-  upload(){
+  upload() {
+    this.storage.get('user').then((data2) => {
 
-    var data={title:this.title,owner:this.title,description:this.description,exchange:this.exchange,category:this.category};
+      if (data2 != null) {
 
-    this.http.post("http://10.193.155.95:3500/login",data).map(res => res.json()).subscribe(
-      result=>{this.navCtrl.setRoot(AnunciosPage);this.storage.set('user', result);},
-      error=>this.goodToast("Usuario inválido")
-    );
+        var nameimg = data2._id+"-"+this.title;
+        this.img.append('file',this.img64);
+        this.img.append('name',nameimg);
+        var data = {
+          title: this.title,
+          owner: data2._id,
+          description: this.description,
+          exchange: this.exchange,
+          category: this.category
+        };
 
+        this.http.post("http://10.193.155.95:3500/uploadadv",this.img).map(res=>res.toString()).subscribe(
+          result=> {
+            if (result = "File is uploaded") {
+              this.http.post("http://10.193.155.95:3500/addAdv", data).map(res => res.json()).subscribe(
+                result => {
+                  if (result.toString() != "500") {
+                    this.goodToast("Anuncio Añadido");
+                    this.navCtrl.setRoot(AnunciosPage, "hola", {animate: true, direction: 'back'});
+                  }
+                  else {
+                    this.goodToast("Rellena los campos correctamente");
+                  }
+                },
+                error => this.goodToast("Error al subir el anuncio")
+              );
+            }
+          },
+            error => this.goodToast("Error al subir imagen")
+        );
+        this.img="";
+      }
+    });
   }
 }
+
