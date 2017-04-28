@@ -15,6 +15,34 @@
       <h3 id="profile-name">{{adv.ownername}}</h3>
       <span id="profile-description">Usuario desde {{date}}</span>
     </div>
-
   </div>
+  <ion-list no-lines>
+
+    <ion-item-sliding *ngFor="let review of reviews">
+
+      <ion-item>
+
+        <ion-avatar item-left>
+          <img src="https://api.adorable.io/avatars/75">
+        </ion-avatar>
+
+        <h2>{{review.title}}</h2>
+        <p>{{review.description}}</p>
+
+        <ion-icon *ngIf="review.rating < 50" danger name="sad"></ion-icon>
+        <ion-icon *ngIf="review.rating >= 50" secondary name="happy"></ion-icon>
+        {{review.rating}}
+
+      </ion-item>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteReview(review)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
 </ion-content>
+
