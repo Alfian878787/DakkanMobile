@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button color="dark" clear icon-only (click)="close()">
+      <ion-icon name='close' is-active="false"></ion-icon>
+    </button>
+    <ion-title>Subir anuncio</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-list>
+
+    <ion-item >
+      <ion-label floating>Titulo</ion-label>
+      <ion-input type="text"  [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Descripción del producto</ion-label>
+      <ion-input type="text"  [(ngModel)]="description"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Qué se busca a cambio </ion-label>
+      <ion-input type="text"  [(ngModel)]="exchange"></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Elige una categoria</ion-label>
+    <ion-select [(ngModel)]="category">
+      <ion-option value="Deportes">Deportes</ion-option>
+      <ion-option value="Hogar">Hogar</ion-option>
+      <ion-option value="Ocio">Ocio</ion-option>
+      <ion-option value="Salud">Salud</ion-option>
+    </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div text-center=""><button ion-button large color="dark" clear icon-only (click)="presentActionSheet()">
+    <ion-icon name="image"></ion-icon>
+  </button></div>
+
+  <img style="border-radius: 50%" [src]="base64Image" *ngIf="base64Image" sizes="10x10" />
+
+
+  <div text-center=""><button ion-button icon-right *ngIf="showCloseBtn" (click)="upload()"><ion-icon name="checkmark-circle"></ion-icon> Subir imagen </button></div>
+
+
+</ion-content>

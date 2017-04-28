@@ -12,6 +12,7 @@ import {AnunciosPage} from '../pages/Anuncios/anuncios';
 
 @Component({
   templateUrl: 'app.html'
+
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

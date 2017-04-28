@@ -3,21 +3,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Ajustes Usuario</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+  <div text-center=""><button ion-button round (click)="updateName();">Cambiar nombre</button></div>
+
+  <div text-center=""><button ion-button round (click)="updatePass();">Cambiar constraseña</button></div>
+
+  <div text-center=""><button ion-button round (click)="presentActionSheet()">Cambiar imagen perfil</button></div>
+  <img style="border-radius: 100%" [src]="base64Image" *ngIf="base64Image" sizes="150x" />
+  <div text-center=""><button ion-button icon-right *ngIf="showCloseBtn" (click)="upload()"><ion-icon name="checkmark-circle"></ion-icon> Subir imagen </button></div>
+
 </ion-content>

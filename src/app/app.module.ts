@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+
 import { MyApp } from './app.component';
 import { PerfilPage } from '../pages/Perfil/perfil';
 import { MessagesPage } from '../pages/Mensajes/messages';
@@ -17,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {OPerfilPage} from "../pages/OPerfil/operfil";
+import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import {OPerfilPage} from "../pages/OPerfil/operfil";
     InicioPage,
     AnunciosPage,
     AnuncioPage,
-    OPerfilPage
+    OPerfilPage,
+    NewAnuncioPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {OPerfilPage} from "../pages/OPerfil/operfil";
     InicioPage,
     AnunciosPage,
     AnuncioPage,
-    OPerfilPage
+    OPerfilPage,
+    NewAnuncioPage
   ],
   providers: [
     StatusBar,

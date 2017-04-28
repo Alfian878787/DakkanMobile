@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {ActionSheetController, NavController,LoadingController,ToastController} from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
+import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
+import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import {AnuncioPage} from '../Anuncio/anuncio';
+import {NewAnuncioPage} from "../NewAnuncio/newanuncio";
 
 @Component({
   selector: 'page-list',
@@ -11,7 +15,7 @@ import {AnuncioPage} from '../Anuncio/anuncio';
 export class AnunciosPage {
   items: Array<{title: string}>;
   grid: Array<Array<string>>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http) {
+  constructor(public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
     this.items = [];
     http.get("http://10.193.155.95:3500/allAdvs").subscribe(data => {
@@ -36,6 +40,17 @@ export class AnunciosPage {
     });
   }
 
+  addAdv(){
+    this.navCtrl.setRoot(NewAnuncioPage,"hola",{animate:true, direction:'forward'})
+  }
+  goodToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
   detalle(image){
     this.navCtrl.push(AnuncioPage,{adv:image})
 

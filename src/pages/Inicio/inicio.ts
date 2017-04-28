@@ -55,7 +55,7 @@ export class InicioPage {
               var data2 = {name: data.name, password: data.password};
               this.http.post("http://10.193.155.95:3500/push", data2).map(res => res.json()).subscribe(
                 result => {
-                  this.navCtrl.push(AnunciosPage);
+                  this.navCtrl.setRoot(AnunciosPage)
                   this.storage.set('user', result);
                 },
                 error => this.goodToast("El usuario ya existe")
@@ -81,7 +81,7 @@ export class InicioPage {
     var data={name:this.name,password:this.pass};
 
   this.http.post("http://10.193.155.95:3500/login",data).map(res => res.json()).subscribe(
-    result=>{this.navCtrl.push(AnunciosPage);this.storage.set('user', result);},
+    result=>{this.navCtrl.setRoot(AnunciosPage);this.storage.set('user', result);},
     error=>this.goodToast("Usuario inválido")
   );
   }
