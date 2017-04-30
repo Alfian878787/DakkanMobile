@@ -100,10 +100,10 @@ export class NewAnuncioPage {
           category: this.category
         };
 
-        this.http.post("http://10.193.155.95:3500/uploadadv",this.img).map(res=>res.toString()).subscribe(
+        this.http.post("http://147.83.7.156:3500/uploadadv",this.img).map(res=>res.toString()).subscribe(
           result=> {
             if (result = "File is uploaded") {
-              this.http.post("http://10.193.155.95:3500/addAdv", data).map(res => res.json()).subscribe(
+              this.http.post("http://147.83.7.156:3500/addAdv", data).map(res => res.json()).subscribe(
                 result => {
                   if (result.toString() != "500") {
                     this.goodToast("Anuncio Añadido");

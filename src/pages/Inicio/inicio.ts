@@ -10,8 +10,8 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'inicio.html'
 })
 export class InicioPage {
-  name:any;
-  pass:any;
+  name:string;
+  pass:string;
 
   constructor(public alertCtrl: AlertController,public storage:Storage,public http: Http,public navCtrl: NavController, public navParams: NavParams,private toastCtrl: ToastController) {
     this.http=http;
@@ -53,9 +53,9 @@ export class InicioPage {
             else{
             if (data.password == data.password2) {
               var data2 = {name: data.name, password: data.password};
-              this.http.post("http://10.193.155.95:3500/push", data2).map(res => res.json()).subscribe(
+              this.http.post("http://147.83.7.156:3500/push", data2).map(res => res.json()).subscribe(
                 result => {
-                  this.navCtrl.setRoot(AnunciosPage)
+                  this.navCtrl.setRoot(AnunciosPage);
                   this.storage.set('user', result);
                 },
                 error => this.goodToast("El usuario ya existe")
@@ -80,8 +80,16 @@ export class InicioPage {
   login(){
     var data={name:this.name,password:this.pass};
 
-  this.http.post("http://10.193.155.95:3500/login",data).map(res => res.json()).subscribe(
-    result=>{this.navCtrl.setRoot(AnunciosPage);this.storage.set('user', result);},
+  this.http.post("http://147.83.7.156:3500/login",data).map(res => res.json()).subscribe(
+    result=>{
+      if(result[0]==undefined){
+        this.goodToast("Usuario inválido")
+      }
+      else{
+        this.navCtrl.setRoot(AnunciosPage);
+        this.storage.set('user', result[0]);
+      }
+    },
     error=>this.goodToast("Usuario inválido")
   );
   }
