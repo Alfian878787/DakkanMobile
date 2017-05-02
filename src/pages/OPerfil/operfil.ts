@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  ActionSheetController, NavController, LoadingController, Loading, ToastController,
+  ActionSheetController, NavController, LoadingController, ToastController,
   NavParams
 } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';

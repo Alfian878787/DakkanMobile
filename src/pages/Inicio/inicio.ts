@@ -56,7 +56,7 @@ export class InicioPage {
               this.http.post("http://147.83.7.156:3500/push", data2).map(res => res.json()).subscribe(
                 result => {
                   this.navCtrl.setRoot(AnunciosPage);
-                  this.storage.set('user', result);
+                  this.storage.set('user', result[0]);
                 },
                 error => this.goodToast("El usuario ya existe")
               );
