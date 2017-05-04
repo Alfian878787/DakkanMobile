@@ -1,37 +1,60 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {ActionSheetController, NavController,LoadingController,ToastController} from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import {Http} from "@angular/http";
+import { AlertController } from 'ionic-angular';
+import {AnuncioPage} from "../Anuncio/anuncio";
 
 @Component({
   selector: 'page-list',
   templateUrl: 'favoritos.html'
 })
 export class FavoritosPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+    grid: Array<string>;
+  constructor(public alertCtrl: AlertController, public http: Http, public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+   this.storage.get('user').then((data) => {
+     if(data != null) {
+     var data2 = {name: data.name};
+     http.post("http://147.83.7.156:3500/profile",data2).map(res => res.json()).subscribe(
+     result => {
+       this.grid = Array(result.advs.length);
+       for(let i=0;i<result.advs.length;i++) {
+           this.grid[i] = result.advs[i];
+       }
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+     }, error => {
+     console.log("error")
+     });
+     }
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+     });
+
   }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(FavoritosPage, {
-      item: item
+  goodToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
     });
+    toast.present();
+  }
+  unfavorite(row){
+
+    this.storage.get('user').then((data) => {
+      if(data != null) {
+        var data2 = {name: data.name, advid: row.id};
+        this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
+          result => {if(result="Deleted from favorites"){
+            this.goodToast("Eliminado de favoritos!")}
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);},
+          error=>this.goodToast("Vaya...")
+        )};
+      });
+
+  }
+  detalle(row){
+    this.navCtrl.push(AnuncioPage,{adv:row,fav:false})
+
   }
 }

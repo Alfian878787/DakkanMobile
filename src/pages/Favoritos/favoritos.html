@@ -3,21 +3,39 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Favoritos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <ion-row *ngFor="let row of grid" no-margin="" no-padding="">
+ <ion-card>
+    <img src="http://147.83.7.156:3500/images/150x/{{row.imageurl}}.png" (click)="detalle(row);" style="width: 100%">
+
+    <ion-card-content>
+      <ion-card-title>
+        {{row.title}}
+      </ion-card-title>
+      <p>
+        {{row.description}}
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" (click)="unfavorite(row)" icon-left>
+          <ion-icon name='close'></ion-icon>
+          Unfavorite
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='text'></ion-icon>
+          Send message
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+  </ion-row>
 </ion-content>

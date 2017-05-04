@@ -33,7 +33,6 @@ export class AnunciosPage {
           this.grid[rowNum][1] = data.json()[i + 1]
         }
         rowNum++;
-
       }
     }, error => {
       console.log("error")
@@ -52,7 +51,7 @@ export class AnunciosPage {
     toast.present();
   }
   detalle(image){
-    this.navCtrl.push(AnuncioPage,{adv:image})
+    this.navCtrl.push(AnuncioPage,{adv:image,fav:true})
 
   }
 

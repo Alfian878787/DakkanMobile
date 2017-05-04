@@ -14,9 +14,28 @@ export class AnuncioPage {
   timestamp:any;
   date:any;
   map:GoogleMap;
+  fav: boolean;
 
   constructor(private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
+    this.fav = navParams.get('fav');
+    this.storage.get('user').then((data) => {
+      if(data != null) {
+        var data2 = {name: data.name};
+        http.post("http://147.83.7.156:3500/getfavorites",data2).map(res => res.json()).subscribe(
+          result => {
+            for(let i=0;i<result.length;i++) {
+              if( this.adv.imageurl = result[i].imageurl){
+                this.fav = false;
+              }
+            }
+
+          }, error => {
+            console.log("error")
+          });
+      }
+
+    });
    this.timestamp = this.adv.id.toString().substring(0,8);
    this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 ).toLocaleDateString();
     platform.ready().then(() => {
@@ -45,12 +64,25 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://10.193.155.95:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
           result=>{if(result="Added to favorites"){
             this.goodToast("Añadido a favoritos!")}},
           error=>this.goodToast("Vaya...")
         );
       }
     });
+  }
+  unfavorito(row){
+
+    this.storage.get('user').then((data) => {
+      if(data != null) {
+        var data2 = {name: data.name, advid: this.adv.id};
+        this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
+          result => {if(result="Deleted from favorites"){
+            this.goodToast("Eliminado de favoritos!")}},
+          error=>this.goodToast("Vaya...")
+        )};
+    });
+
   }
 }
