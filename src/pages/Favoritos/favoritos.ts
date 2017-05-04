@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import { AlertController } from 'ionic-angular';
 import {AnuncioPage} from "../Anuncio/anuncio";
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
@@ -11,7 +12,7 @@ import {AnuncioPage} from "../Anuncio/anuncio";
 })
 export class FavoritosPage {
     grid: Array<string>;
-  constructor(public alertCtrl: AlertController, public http: Http, public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+  constructor(public events: Events, public alertCtrl: AlertController, public http: Http, public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
    this.storage.get('user').then((data) => {
      if(data != null) {
@@ -47,14 +48,17 @@ export class FavoritosPage {
         this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
           result => {if(result="Deleted from favorites"){
             this.goodToast("Eliminado de favoritos!")}
-            this.navCtrl.setRoot(this.navCtrl.getActive().component);},
+            this.navCtrl.setRoot(this.navCtrl.getActive().component),"hola",{animate:true, direction:'forward'}},
           error=>this.goodToast("Vaya...")
         )};
       });
 
   }
   detalle(row){
-    this.navCtrl.push(AnuncioPage,{adv:row,fav:false})
+    this.navCtrl.setRoot(AnuncioPage,{adv:row,fav:false,page:"FavoritosPage"},{animate:true, direction:'forward'});
 
   }
+
+
+
 }

@@ -4,6 +4,9 @@ import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import {GoogleMap, GoogleMaps} from "@ionic-native/google-maps";
 import {OPerfilPage} from "../OPerfil/operfil";
+import { Events } from 'ionic-angular';
+import {AnunciosPage} from "../Anuncios/anuncios";
+import {FavoritosPage} from "../Favoritos/favoritos";
 
 @Component({
   selector: 'page-list',
@@ -13,19 +16,21 @@ export class AnuncioPage {
   adv:any;
   timestamp:any;
   date:any;
+  page:any;
   map:GoogleMap;
   fav: boolean;
 
-  constructor(private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
+  constructor(public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
     this.fav = navParams.get('fav');
+    this.page = navParams.get('page');
     this.storage.get('user').then((data) => {
       if(data != null) {
         var data2 = {name: data.name};
         http.post("http://147.83.7.156:3500/getfavorites",data2).map(res => res.json()).subscribe(
           result => {
             for(let i=0;i<result.length;i++) {
-              if( this.adv.imageurl = result[i].imageurl){
+              if( this.adv.id == result[i].id){
                 this.fav = false;
               }
             }
@@ -41,6 +46,7 @@ export class AnuncioPage {
     platform.ready().then(() => {
       this.loadMap();
     });
+    console.log(this.adv);
   }
 
   loadMap(){
@@ -66,7 +72,8 @@ export class AnuncioPage {
         var data2={name:data.name,advid:this.adv.id};
         this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
           result=>{if(result="Added to favorites"){
-            this.goodToast("Añadido a favoritos!")}},
+            this.goodToast("Añadido a favoritos!")}
+          this.fav = false;},
           error=>this.goodToast("Vaya...")
         );
       }
@@ -79,10 +86,19 @@ export class AnuncioPage {
         var data2 = {name: data.name, advid: this.adv.id};
         this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
           result => {if(result="Deleted from favorites"){
-            this.goodToast("Eliminado de favoritos!")}},
+            this.goodToast("Eliminado de favoritos!")}
+          this.fav = true;},
           error=>this.goodToast("Vaya...")
         )};
     });
 
+  }
+  back(){
+    if(this.page == "AnunciosPage") {
+      this.navCtrl.setRoot(AnunciosPage, "hola", {animate: true, direction: 'back'})
+    }
+    if(this.page == "FavoritosPage"){
+      this.navCtrl.setRoot(FavoritosPage, "hola", {animate: true, direction: 'back'})
+    }
   }
 }
