@@ -42,7 +42,7 @@ user:any;
   }
   getReviews(){
     let data2={id:this.adv.owner};
-      this.http.post('http://10.192.135.122:3500/getreviews',data2)
+      this.http.post('http://147.83.7.156:3500/getreviews',data2)
         .map(res => res.json())
         .subscribe(data => {
           let rev;
@@ -80,7 +80,7 @@ user:any;
   deleteReview(rev){
 
     var data={review_id:rev.id}
-    this.http.post('http://10.192.135.122:3500/deletereview',data).map(res=>{
+    this.http.post('http://147.83.7.156:3500/deletereview',data).map(res=>{
       let body =res.text();
       if(body=="ok"){
         let index = this.reviews.indexOf(rev);

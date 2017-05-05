@@ -26,15 +26,15 @@ export class AnuncioPage {
     this.page = navParams.get('page');
     this.storage.get('user').then((data) => {
       if(data != null) {
-        var data2 = {name: data.name};
-        http.post("http://147.83.7.156:3500/getfavorites",data2).map(res => res.json()).subscribe(
+        var data2 = {name: data.name,adv:this.adv};
+        http.post("http://147.83.7.156:3500/getfavorite",data2).map(res => res.toString()).subscribe(
           result => {
-            for(let i=0;i<result.length;i++) {
-              if( this.adv.id == result[i].id){
+              if( result == "True"){
                 this.fav = false;
               }
-            }
-
+              else{
+                this.fav = true;
+              }
           }, error => {
             console.log("error")
           });
@@ -69,10 +69,13 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://10.193.155.95:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
-          result=>{if(result="Added to favorites"){
-            this.goodToast("Añadido a favoritos!")}
-          this.fav = false;},
+        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+          result=>{
+            if(result="Added to favorites"){
+            this.goodToast("Añadido a favoritos!")
+            this.events.publish('added');
+              this.fav = false;
+            }},
           error=>this.goodToast("Vaya...")
         );
       }
@@ -84,9 +87,12 @@ export class AnuncioPage {
       if(data != null) {
         var data2 = {name: data.name, advid: this.adv.id};
         this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
-          result => {if(result="Deleted from favorites"){
-            this.goodToast("Eliminado de favoritos!")}
-          this.fav = true;},
+          result => {
+            if(result="Deleted from favorites"){
+            this.goodToast("Eliminado de favoritos!");
+            this.events.publish('added');
+            this.fav = true;
+          }},
           error=>this.goodToast("Vaya...")
         )};
     });

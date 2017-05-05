@@ -30,7 +30,7 @@ export class NewAnuncioPage {
   }
 
   close(){
-    this.navCtrl.setRoot(AnunciosPage,"hola",{animate:true, direction:'back'});
+    this.navCtrl.pop();
   }
 
   public presentActionSheet() {
