@@ -19,6 +19,7 @@ import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {OPerfilPage} from "../pages/OPerfil/operfil";
 import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
+import { ReviewsPage} from '../pages/Reviews/reviews';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
     AnunciosPage,
     AnuncioPage,
     OPerfilPage,
-    NewAnuncioPage
+    NewAnuncioPage,
+    ReviewsPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
     AnunciosPage,
     AnuncioPage,
     OPerfilPage,
-    NewAnuncioPage
+    NewAnuncioPage,
+    ReviewsPage
   ],
   providers: [
     StatusBar,

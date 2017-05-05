@@ -46,7 +46,6 @@ export class AnuncioPage {
     platform.ready().then(() => {
       this.loadMap();
     });
-    console.log(this.adv);
   }
 
   loadMap(){
@@ -70,7 +69,7 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+        this.http.post("http://10.193.155.95:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
           result=>{if(result="Added to favorites"){
             this.goodToast("Añadido a favoritos!")}
           this.fav = false;},

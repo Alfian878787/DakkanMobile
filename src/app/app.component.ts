@@ -7,7 +7,7 @@ import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
 import { InicioPage} from '../pages/Inicio/inicio';
-import {AnunciosPage} from '../pages/Anuncios/anuncios';
+import { AnunciosPage} from '../pages/Anuncios/anuncios';
 
 
 @Component({
