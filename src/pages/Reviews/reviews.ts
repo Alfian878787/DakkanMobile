@@ -27,6 +27,7 @@ export class ReviewsPage {
   }
   save(): void {
 
+    //pierna
     this.storage.get('user').then((data) => {
       if(this.rating=="undefined"){
           this.rating=0;
