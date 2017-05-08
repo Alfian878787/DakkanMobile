@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActionSheetController, NavController,LoadingController,ToastController} from 'ionic-angular';
+import {ActionSheetController, NavController, LoadingController, ToastController, Events} from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
@@ -15,7 +15,7 @@ import {NewAnuncioPage} from "../NewAnuncio/newanuncio";
 export class AnunciosPage {
   items: Array<{title: string}>;
   grid: Array<Array<string>>;
-  constructor(public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+  constructor(public events:Events, public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
     this.items = [];
     http.get("http://147.83.7.156:3500/allAdvs").subscribe(data => {
@@ -40,7 +40,7 @@ export class AnunciosPage {
   }
 
   addAdv(){
-    this.navCtrl.setRoot(NewAnuncioPage,"hola",{animate:true, direction:'forward'})
+    this.navCtrl.push(NewAnuncioPage)
   }
   goodToast(message) {
     let toast = this.toastCtrl.create({
@@ -51,7 +51,7 @@ export class AnunciosPage {
     toast.present();
   }
   detalle(image){
-    this.navCtrl.setRoot(AnuncioPage,{adv:image,fav:true,page:"AnunciosPage"},{animate:true, direction:'forward'})
+    this.navCtrl.push(AnuncioPage,{adv:image,fav:true,page:"AnunciosPage"},{animate:true, direction:'forward'})
 
   }
 

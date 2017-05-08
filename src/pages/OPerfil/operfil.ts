@@ -79,22 +79,20 @@ user:any;
   }
   deleteReview(rev){
 
-      var data2={review_id:rev.id,name:this.adv.ownername};
-      this.http.post('http://147.83.7.156:3500/deletereview',data2).map(res=>{
-        let body =res.text();
-        if(body=="ok"){
-          let index = this.reviews.indexOf(rev);
+    var data={review_id:rev.id}
+    this.http.post('http://147.83.7.156:3500/deletereview',data).map(res=>{
+      let body =res.text();
+      if(body=="ok"){
+        let index = this.reviews.indexOf(rev);
 
-          if(index > -1){
-            this.reviews.splice(index, 1);
-          }
+        if(index > -1){
+          this.reviews.splice(index, 1);
         }
-        else{
-          this.goodToast("Algo falló")
-        }
-      }).subscribe()
-
-
+      }
+      else{
+        this.goodToast("Algo falló")
+      }
+    }).subscribe()
   }
 
 }

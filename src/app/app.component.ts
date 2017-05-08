@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {Nav, Platform, Events,ToastController} from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PerfilPage } from '../pages/Perfil/perfil';
@@ -19,10 +20,21 @@ export class MyApp {
 
   rootPage: any = InicioPage;
 
+  name:any;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private events: Events, private toastCtrl: ToastController,public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    this.events.subscribe('log',() => {
+      this.storage.get('user').then((data) => {
+        if(data != null) {
+          this.name = data.name;
+        }
+        else{
+          this.name="";
+        }
+      });
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -32,6 +44,12 @@ export class MyApp {
       { title: 'Favoritos', component: FavoritosPage },
       { title: 'Ajustes', component: AjustesPage }
     ];
+
+  }
+
+  logout(){
+    this.nav.setRoot(InicioPage).then(()=>{
+    });
 
   }
 

@@ -28,11 +28,11 @@ export class ReviewsPage {
   save(): void {
 
     this.storage.get('user').then((data) => {
-        if(this.rating=="undefined"){
+      if(this.rating=="undefined"){
           this.rating=0;
-        }
-        let review = {
-          usrname: this.usrname,
+      }
+      let review = {
+        usrname: this.usrname,
         title: this.title,
         description: this.description,
         rating: this.rating,

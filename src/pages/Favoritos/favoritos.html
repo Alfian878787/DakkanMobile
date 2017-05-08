@@ -10,7 +10,15 @@
 <ion-content>
   <ion-row *ngFor="let row of grid" no-margin="" no-padding="">
  <ion-card>
-    <img src="http://147.83.7.156:3500/images/150x/{{row.imageurl}}.png" (click)="detalle(row);" style="width: 100%">
+   <ion-item>
+     <ion-avatar item-left>
+       <img src="http://147.83.7.156:3500/imagesprof//{{row.owner}}.png" (click)="oprofile(row)">
+     </ion-avatar>
+     <h2>{{row.ownername}}</h2>
+     <p>Lugar donde se vende</p>
+   </ion-item>
+
+   <img src="http://147.83.7.156:3500/images/150x/{{row.imageurl}}.png" style="width: 100%">
 
     <ion-card-content>
       <ion-card-title>
@@ -20,6 +28,20 @@
         {{row.description}}
       </p>
     </ion-card-content>
+   <ion-row>
+     <ion-col>
+       <button ion-button icon-left clear small (click)="unfavorito(row);">
+         <ion-icon name="close"></ion-icon>
+         <div>Unfavourite</div>
+       </button>
+     </ion-col>
+     <ion-col>
+       <button ion-button icon-left clear small>
+         <ion-icon name="text"></ion-icon>
+         <div>Send Message</div>
+       </button>
+     </ion-col>
+   </ion-row>
   </ion-card>
   </ion-row>
 </ion-content>

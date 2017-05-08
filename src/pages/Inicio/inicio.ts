@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {NavController, NavParams, ToastController, Events} from 'ionic-angular';
 import {AnunciosPage} from "../Anuncios/anuncios";
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
@@ -13,7 +13,7 @@ export class InicioPage {
   name:string;
   pass:string;
 
-  constructor(public alertCtrl: AlertController,public storage:Storage,public http: Http,public navCtrl: NavController, public navParams: NavParams,private toastCtrl: ToastController) {
+  constructor(private events:Events,public alertCtrl: AlertController,public storage:Storage,public http: Http,public navCtrl: NavController, public navParams: NavParams,private toastCtrl: ToastController) {
     this.http=http;
 
   }
@@ -55,8 +55,11 @@ export class InicioPage {
               var data2 = {name: data.name, password: data.password};
               this.http.post("http://147.83.7.156:3500/push", data2).map(res => res.json()).subscribe(
                 result => {
-                  this.navCtrl.setRoot(AnunciosPage);
-                  this.storage.set('user', result[0]);
+                  this.storage.set('user', result[0]).then(()=>{
+                      this.events.publish('log');
+                      this.navCtrl.setRoot(AnunciosPage);
+                    }
+                  );
                 },
                 error => this.goodToast("El usuario ya existe")
               );
@@ -88,8 +91,11 @@ export class InicioPage {
         this.goodToast("Usuario inválido")
       }
       else{
-        this.navCtrl.setRoot(AnunciosPage);
-        this.storage.set('user', result[0]);
+        this.storage.set('user', result[0]).then(()=>{
+          this.events.publish('log');
+          this.navCtrl.setRoot(AnunciosPage);
+          }
+        );
       }
     },
     error=>this.goodToast("Usuario inválido")
