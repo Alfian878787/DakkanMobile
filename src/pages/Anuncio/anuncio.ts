@@ -27,7 +27,7 @@ export class AnuncioPage {
     this.storage.get('user').then((data) => {
       if(data != null) {
         var data2 = {name: data.name};
-        http.post("http://147.83.7.156:3500/getfavorites",data2).map(res => res.json()).subscribe(
+        http.post("http://147.83.7.156:3500/getfavorite",data2).map(res => res.json()).subscribe(
           result => {
             for(let i=0;i<result.length;i++) {
               if( this.adv.id == result[i].id){
@@ -69,7 +69,7 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://10.193.155.95:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
           result=>{if(result="Added to favorites"){
             this.goodToast("Añadido a favoritos!")}
           this.fav = false;},

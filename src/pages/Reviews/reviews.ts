@@ -28,18 +28,18 @@ export class ReviewsPage {
   save(): void {
 
     this.storage.get('user').then((data) => {
-      if(this.rating="undefined"){
-     this.rating=0;
-      }
-      let review = {
-        usrname: this.usrname,
+        if(this.rating=="undefined"){
+          this.rating=0;
+        }
+        let review = {
+          usrname: this.usrname,
         title: this.title,
         description: this.description,
         rating: this.rating,
         reviewername:data.name,
         reviewerid:data._id
       };
-      this.http.post('http://10.192.135.122:3500/postreview',review).subscribe(res => {
+      this.http.post('http://147.83.7.156:3500/postreview',review).subscribe(res => {
 
       });
       this.navCtrl.pop();

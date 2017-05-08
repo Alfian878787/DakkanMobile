@@ -215,6 +215,10 @@ export class AjustesPage {
     });
   }
 
+  changeloc(){
+
+  }
+
 }
 
 

@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-
 import { MyApp } from './app.component';
 import { PerfilPage } from '../pages/Perfil/perfil';
 import { MessagesPage } from '../pages/Mensajes/messages';
@@ -20,6 +19,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 import {OPerfilPage} from "../pages/OPerfil/operfil";
 import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
 import { ReviewsPage} from '../pages/Reviews/reviews';
+import { MapaPage} from '../pages/Mapa/mapa';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { ReviewsPage} from '../pages/Reviews/reviews';
     AnuncioPage,
     OPerfilPage,
     NewAnuncioPage,
-    ReviewsPage
+    ReviewsPage,
+    MapaPage
   ],
   imports: [
     BrowserModule,
@@ -55,14 +56,16 @@ import { ReviewsPage} from '../pages/Reviews/reviews';
     AnuncioPage,
     OPerfilPage,
     NewAnuncioPage,
-    ReviewsPage
+    ReviewsPage,
+    MapaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    GoogleMaps
+    GoogleMaps,
+
   ]
 })
 export class AppModule {}

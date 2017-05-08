@@ -18,7 +18,7 @@ export class AnunciosPage {
   constructor(public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
     this.items = [];
-    http.get("http://10.192.135.122:3500/allAdvs").subscribe(data => {
+    http.get("http://147.83.7.156:3500/allAdvs").subscribe(data => {
 
       this.grid = Array(Math.ceil(data.json().length/2)); //MATHS!
       let rowNum = 0;

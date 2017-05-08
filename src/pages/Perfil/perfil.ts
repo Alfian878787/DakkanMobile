@@ -109,7 +109,7 @@ export class PerfilPage {
               this.storage.get('user').then((data2) => {
                 if (data2 != null) {
                   var data = {name: data2.name, new: data3.newname};
-                  this.http.put("http://10.193.155.95:3500/updateName", data).map(res => res.json()).subscribe(
+                  this.http.put("http://147.83.7.156:3500/updateName", data).map(res => res.json()).subscribe(
                     result => {
                       if (result.toString()!= "500") {
                         this.goodToast("Nombre cambiado correctamente");
@@ -165,7 +165,7 @@ export class PerfilPage {
               this.storage.get('user').then((data2) => {
                 if (data2 != null) {
                   var data = {name:data2.name,password: data3.pass, new: data3.newpass};
-                  this.http.put("http://10.193.155.95:3500/updatePass", data).map(res => res.json()).subscribe(
+                  this.http.put("http://147.83.7.156:3500/updatePass", data).map(res => res.json()).subscribe(
                     result => {
                       if (result.toString() != "500") {
                         this.goodToast("Contraseña cambiada correctamente");
@@ -200,7 +200,7 @@ export class PerfilPage {
 
 
 
-        this.http.post("http://10.193.155.95:3500/upload",this.img).map(res=>res.toString()).subscribe(
+        this.http.post("http://147.83.7.156:3500/upload",this.img).map(res=>res.toString()).subscribe(
         result=>{if(result="File is uploades"){
           this.goodToast("Imagen de perfil actualizada")}},
         error=>this.goodToast("Vaya...")
