@@ -25,9 +25,8 @@ export class ReviewsPage {
     });
     toast.present();
   }
-  save(): void {
+  save(){
 
-    //pierna
     this.storage.get('user').then((data) => {
       if(this.rating=="undefined"){
           this.rating=0;
@@ -48,7 +47,7 @@ export class ReviewsPage {
 
   }
 
-  close(): void {
+  close() {
     this.navCtrl.pop()
   }
 
