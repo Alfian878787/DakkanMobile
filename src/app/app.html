@@ -1,11 +1,14 @@
-<ion-menu *ngIf="iniciadomenu!=false" [content]="content">
+<ion-menu *ngIf="iniciado!=false" [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar *ngIf="iniciadomenu!=false">
       <ion-title>Hola {{this.name}}</ion-title>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="iniciadomenu!=true">
+      <ion-title>Inicia la sesión</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content *ngIf="iniciadomenu!=false">
     <button menuClose ion-button full (click)="logout()">
      Logout
     </button>

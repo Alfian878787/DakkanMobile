@@ -24,15 +24,18 @@ export class MyApp {
   user:any;
   pages: Array<{title: string, component: any}>;
   iniciadomenu: any;
+  iniciado: any;
 
   constructor(private events: Events, private toastCtrl: ToastController,public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.iniciadomenu = false;
+    this.iniciado = false;
     this.events.subscribe('log',() => {
       this.storage.get('user').then((data) => {
         if(data != null) {
           this.name = data.name;
           this.user = data;
+          this.iniciado = true;
           this.iniciadomenu = true;
         }
         else{
@@ -59,6 +62,7 @@ export class MyApp {
       this.name = "";
       this.nav.setRoot(this.rootPage).then(()=>{
         this.initializeApp();
+        this.iniciadomenu = false;
       });}
 
     );
