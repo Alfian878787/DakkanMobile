@@ -47,10 +47,8 @@ user:any;
         .subscribe(data => {
           let rev;
           let revlist=[];
-
           for(let i=0;i<data.length;i++)
           {
-
            if (data[i].reviewername!=this.user){
               rev={id:data[i]._id,title:data[i].title,description:data[i].description,rating: data[i].rating, reviewername:data[i].reviewername,
                 reviewerid:data[i].reviewerid,itsme:false};

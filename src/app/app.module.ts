@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { PerfilPage } from '../pages/Perfil/perfil';
+import { PerfOpinionPage } from '../pages/PerfOpinion/perfopinion';
+import { PerfAnunciosPage } from '../pages/PerfAnuncios/perfanuncios';
 import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
@@ -35,7 +37,9 @@ import { MapaPage} from '../pages/Mapa/mapa';
     OPerfilPage,
     NewAnuncioPage,
     ReviewsPage,
-    MapaPage
+    MapaPage,
+    PerfOpinionPage,
+    PerfAnunciosPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { MapaPage} from '../pages/Mapa/mapa';
     OPerfilPage,
     NewAnuncioPage,
     ReviewsPage,
-    MapaPage
+    MapaPage,
+    PerfOpinionPage,
+    PerfAnunciosPage
   ],
   providers: [
     StatusBar,

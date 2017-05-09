@@ -3,9 +3,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Tu perfil</ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content has-header="true">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+   <!-- pages/tabs/tabs.html -->
+    <ion-tabs>
+      <!-- Indicates with tabsPage should handle each tab here -->
+      <ion-tab [root]="PerfOpinion"[rootParams]="user" tabTitle="Opiniones" tabIcon="chatbubbles"></ion-tab>
+      <ion-tab [root]="Anuncios" [rootParams]="user" tabTitle="Anuncios" tabIcon="albums"></ion-tab>
+    </ion-tabs>
+</ion-content>
+
 
 
 

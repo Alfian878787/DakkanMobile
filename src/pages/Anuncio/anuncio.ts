@@ -27,7 +27,7 @@ export class AnuncioPage {
     this.storage.get('user').then((data) => {
       if(data != null) {
         var data2 = {name: data.name};
-        http.post("http://147.83.7.156:3500/getfavorites",data2).map(res => res.json()).subscribe(
+        http.post("http://147.83.7.156:3500/getfavorite",data2).map(res => res.json()).subscribe(
           result => {
               if( result == "True"){
                 this.fav = false;

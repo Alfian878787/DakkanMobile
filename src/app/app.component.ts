@@ -21,17 +21,23 @@ export class MyApp {
   rootPage: any = InicioPage;
 
   name:any;
+  user:any;
   pages: Array<{title: string, component: any}>;
+  iniciadomenu: any;
 
   constructor(private events: Events, private toastCtrl: ToastController,public storage: Storage,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    this.iniciadomenu = false;
     this.events.subscribe('log',() => {
       this.storage.get('user').then((data) => {
         if(data != null) {
           this.name = data.name;
+          this.user = data;
+          this.iniciadomenu = true;
         }
         else{
           this.name="";
+          this.iniciadomenu = false;
         }
       });
     });
@@ -48,8 +54,14 @@ export class MyApp {
   }
 
   logout(){
-    this.nav.setRoot(InicioPage).then(()=>{
-    });
+
+    this.storage.clear().then(()=>{
+      this.name = "";
+      this.nav.setRoot(this.rootPage).then(()=>{
+        this.initializeApp();
+      });}
+
+    );
 
   }
 
@@ -65,6 +77,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component,{user:this.user});
   }
 }
