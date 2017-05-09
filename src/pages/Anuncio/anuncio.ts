@@ -42,7 +42,7 @@ export class AnuncioPage {
 
     });
    this.timestamp = this.adv.id.toString().substring(0,8);
-   this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 ).toLocaleDateString();
+   this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 );
     platform.ready().then(() => {
       this.loadMap();
     });

@@ -22,7 +22,7 @@ export class PerfAnunciosPage {
   constructor(public navParams: NavParams,public http: Http,public storage:Storage,public navCtrl: NavController, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
     this.user = navParams.data;
     let timestamp = this.user._id.toString().substring(0,8);
-    this.date = new Date( parseInt( timestamp, 16 ) * 1000 ).toLocaleDateString();
+    this.date = new Date( parseInt( timestamp, 16 ) * 1000 );
       this.getAdvs();
   }
 

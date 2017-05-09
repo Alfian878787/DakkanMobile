@@ -7,6 +7,7 @@ import { Camera } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
+import {MomentModule} from 'angular2-moment';
 import {ReviewsPage} from "../Reviews/reviews";
 
 @Component({
@@ -16,22 +17,21 @@ import {ReviewsPage} from "../Reviews/reviews";
 
 export class OPerfilPage {
 adv:any;
-date:any;
 reviews: any;
 user:any;
+myDate:Date;
 
 
-  constructor(public navParams: NavParams,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+  constructor(public moment: MomentModule,public navParams: NavParams,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
     this.adv = navParams.get('adv');
     let timestamp = this.adv.owner.toString().substring(0,8);
-    this.date = new Date( parseInt( timestamp, 16 ) * 1000 ).toLocaleDateString();
+    this.myDate = new Date(parseInt( timestamp, 16 ) * 1000 );
     this.getReviews();
     this.storage.get('user').then((data) => {
       this.user=data.name
     });
     this.reviews="";
   }
-
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
     this.getReviews();

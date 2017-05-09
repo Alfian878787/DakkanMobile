@@ -22,6 +22,7 @@ import {OPerfilPage} from "../pages/OPerfil/operfil";
 import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
 import { ReviewsPage} from '../pages/Reviews/reviews';
 import { MapaPage} from '../pages/Mapa/mapa';
+import {MomentModule} from 'angular2-moment';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MapaPage} from '../pages/Mapa/mapa';
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
+    MomentModule
 
   ],
   bootstrap: [IonicApp],
