@@ -10,9 +10,9 @@ import {FavoritosPage} from "../Favoritos/favoritos";
 
 @Component({
   selector: 'page-list',
-  templateUrl: 'anuncio.html'
+  templateUrl: 'anuncioperfil.html'
 })
-export class AnuncioPage {
+export class AnuncioPerfilPage {
   adv:any;
   timestamp:any;
   date:any;
@@ -26,16 +26,16 @@ export class AnuncioPage {
     this.page = navParams.get('page');
     this.storage.get('user').then((data) => {
       if(data != null) {
-        var data2 = {name: data.name, advid:this.adv.id};
+        var data2 = {name: data.name,advid:this.adv.id};
         http.post("http://147.83.7.156:3500/getfavorite",data2).map(res =>{
-              let response = res.text();
-              if(response =="True"){
-                this.fav = false;
-              }
-              else{
-                this.fav = true;
-              }
-          }).subscribe()
+          let response = res.text();
+          if(response =="True"){
+            this.fav = false;
+          }
+          else{
+            this.fav = true;
+          }
+        }).subscribe()
       }
 
     });
@@ -67,14 +67,15 @@ export class AnuncioPage {
       if(data != null)
       {
         var data2={name:data.name,advid:this.adv.id};
-        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>{
-          let result = res.text();
-          if(result=="Added to favorites"){
+        this.http.post("http://147.83.7.156:3500/addfavorite",data2).map(res=>res.toString()).subscribe(
+          result=>{
+            if(result="Added to favorites"){
             this.goodToast("Añadido a favoritos!")
             this.events.publish('added');
-            this.fav = false;
-          }
-        }).subscribe()
+              this.fav = false;
+            }},
+          error=>this.goodToast("Vaya...")
+        );
       }
     });
   }
@@ -83,25 +84,24 @@ export class AnuncioPage {
     this.storage.get('user').then((data) => {
       if(data != null) {
         var data2 = {name: data.name, advid: this.adv.id};
-        this.http.post("http://147.83.7.156:3500/deletefavorite", data2).map(res => {
-          let result = res.text()
-          if (result == "Deleted from favorites") {
+        this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
+          result => {
+            if(result="Deleted from favorites"){
             this.goodToast("Eliminado de favoritos!");
             this.events.publish('added');
             this.fav = true;
-          }
-        }).subscribe()
-      }
+          }},
+          error=>this.goodToast("Vaya...")
+        )};
     });
+
   }
   back(){
     if(this.page == "AnunciosPage") {
       this.navCtrl.setRoot(AnunciosPage, "hola", {animate: true, direction: 'back'})
     }
-    else {
-      if (this.page == "FavoritosPage") {
-        this.navCtrl.setRoot(FavoritosPage, "hola", {animate: true, direction: 'back'})
-      }
+    if(this.page == "FavoritosPage"){
+      this.navCtrl.setRoot(FavoritosPage, "hola", {animate: true, direction: 'back'})
     }
   }
 }

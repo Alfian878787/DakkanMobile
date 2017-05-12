@@ -52,25 +52,24 @@ export class FavoritosPage {
     toast.present();
   }
   oprofile(row){
-    this.navCtrl.push(OPerfilPage,{adv:row})
+    this.navCtrl.push(OPerfilPage,{adv:row,page:"FavoritosPage"})
   }
   unfavorito(row){
 
     this.storage.get('user').then((data) => {
       if(data != null) {
         var data2 = {name: data.name, advid: row.id};
-        this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => res.toString()).subscribe(
-          result => {
-            if(result="Deleted from favorites"){
-              this.goodToast("Eliminado de favoritos!");
-              let index = this.grid.indexOf(row);
-
-              if(index > -1){
-                this.grid.splice(index, 1);
-              }
-            }},
-          error=>this.goodToast("Vaya...")
-        )};
+        this.http.post("http://147.83.7.156:3500/deletefavorite",data2).map(res => {
+          let result = res.text()
+          if(result=="Deleted from favorites"){
+            this.goodToast("Eliminado de favoritos!");
+            let index = this.grid.indexOf(row);
+            if(index > -1){
+              this.grid.splice(index, 1);
+            }
+          }
+        }).subscribe()
+        };
     });
 
   }

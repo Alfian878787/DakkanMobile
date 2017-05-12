@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {HttpModule} from "@angular/http";
 import {AnunciosPage} from '../pages/Anuncios/anuncios';
 import {AnuncioPage} from '../pages/Anuncio/anuncio';
+import {AnuncioPerfilPage} from '../pages/AnuncioPerfil/anuncioperfil';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
@@ -40,7 +41,8 @@ import {MomentModule} from 'angular2-moment';
     ReviewsPage,
     MapaPage,
     PerfOpinionPage,
-    PerfAnunciosPage
+    PerfAnunciosPage,
+    AnuncioPerfilPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import {MomentModule} from 'angular2-moment';
     ReviewsPage,
     MapaPage,
     PerfOpinionPage,
-    PerfAnunciosPage
+    PerfAnunciosPage,
+    AnuncioPerfilPage
   ],
   providers: [
     StatusBar,

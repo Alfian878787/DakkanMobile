@@ -1,0 +1,46 @@
+<ion-content>
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="http://147.83.7.156:3500/imagesprof//{{adv.owner}}.png" (click)="oprofile()">
+      </ion-avatar>
+      <h2>{{adv.ownername}}</h2>
+      <p>Lugar donde se vende</p>
+    </ion-item>
+
+    <img src="http://147.83.7.156:3500/images//{{adv.imageurl}}.png">
+
+    <ion-card-content>
+      <h3>{{adv.title}}</h3>
+      <p>{{adv.description}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear *ngIf="fav!=false" small (click)="favorito();">
+          <ion-icon name="heart"></ion-icon>
+          <div>Favourite</div>
+        </button>
+        <button ion-button icon-left clear *ngIf="fav!=true" small (click)="unfavorito();">
+          <ion-icon name="close"></ion-icon>
+          <div>Unfavourite</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>Send Message</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          Published <time>{{date | amTimeAgo}}</time>
+        </ion-note>
+      </ion-col>
+    </ion-row>
+    <div id="map" style="width: 200px; height: 200px;"></div>
+  </ion-card>
+
+
+</ion-content>

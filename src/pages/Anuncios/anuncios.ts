@@ -51,7 +51,7 @@ export class AnunciosPage {
     toast.present();
   }
   detalle(image){
-    this.navCtrl.push(AnuncioPage,{adv:image,fav:true,page:"AnunciosPage"},{animate:true, direction:'forward'})
+    this.navCtrl.push(AnuncioPage,{adv:image,page:"AnunciosPage"},{animate:true, direction:'forward'})
 
   }
 

@@ -6,7 +6,7 @@ import {
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
-import {AnuncioPage} from "../Anuncio/anuncio";
+import {AnuncioPerfilPage} from "../AnuncioPerfil/anuncioperfil";
 
 
 @Component({
@@ -47,7 +47,7 @@ export class PerfAnunciosPage {
     toast.present();
   }
   detalle(row){
-    this.navCtrl.push(AnuncioPage,{adv:row,fav:true,page:"AnunciosPage"},{animate:true, direction:'forward'})
+    this.navCtrl.push(AnuncioPerfilPage,{adv:row},{animate:true, direction:'forward'})
 
   }
 
