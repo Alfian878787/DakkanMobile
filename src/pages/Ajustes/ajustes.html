@@ -12,6 +12,8 @@
 
   <div text-center=""><button ion-button round (click)="updatePass();">Cambiar constraseña</button></div>
 
+  <div text-center=""><button ion-button round (click)="updateLoc();">Actualizar ubicación</button></div>
+
   <div text-center=""><button ion-button round (click)="presentActionSheet()">Cambiar imagen perfil</button></div>
   <img style="border-radius: 100%" [src]="base64Image" *ngIf="base64Image" sizes="150x" />
   <div text-center=""><button ion-button icon-right *ngIf="showCloseBtn" (click)="upload()"><ion-icon name="checkmark-circle"></ion-icon> Subir imagen </button></div>

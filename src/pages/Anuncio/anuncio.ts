@@ -7,7 +7,8 @@ import {OPerfilPage} from "../OPerfil/operfil";
 import { Events } from 'ionic-angular';
 import {AnunciosPage} from "../Anuncios/anuncios";
 import {FavoritosPage} from "../Favoritos/favoritos";
-
+import {NativeGeocoder, NativeGeocoderForwardResult} from "@ionic-native/native-geocoder";
+declare var google:any;
 @Component({
   selector: 'page-list',
   templateUrl: 'anuncio.html'
@@ -17,10 +18,11 @@ export class AnuncioPage {
   timestamp:any;
   date:any;
   page:any;
-  map:GoogleMap;
+  map:any;
   fav: boolean;
+  address:any;
 
-  constructor(public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
+  constructor(private geo:NativeGeocoder,public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
     this.fav = true;
     this.page = navParams.get('page');
@@ -47,7 +49,23 @@ export class AnuncioPage {
   }
 
   loadMap(){
-    this.map = new GoogleMap('map');
+
+    this.map = new google.maps.Map(document.getElementById('map'),{
+      zoom:16,
+      center:location
+    });
+    //this.getpos(this.adv.location);
+    //let loc={lat:this.address.latitude,lng:this.address.longitude};
+   //let marker=new google.maps.Marker({
+     // position:loc,
+    //  map:this.map
+   // });
+  }
+  getpos(pos) {
+    this.geo.forwardGeocode(pos).then((res:NativeGeocoderForwardResult)=> {
+      this.address=res;
+    })
+
   }
   goodToast(message) {
     let toast = this.toastCtrl.create({

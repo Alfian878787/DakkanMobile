@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <div id="map" style="width: 200px; height: 200px;"></div>
+  <ion-list>
+    <ion-item>
+      <ion-input (click)="showAddressModal()" [(ngModel)]="address.description" type="text" placeholder="Pick an address"></ion-input>
+    </ion-item>
+    <button ion-button round (click)="saveloc();">Aceptar</button>
+  </ion-list>
+  <div id="map"></div>
 </ion-content>

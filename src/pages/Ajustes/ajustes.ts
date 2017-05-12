@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
+import {MapaPage} from "../Mapa/mapa";
 
 @Component({
   selector: 'page-list',
@@ -83,6 +84,12 @@ export class AjustesPage {
     });
     toast.present();
   }
+
+  updateLoc(){
+    this.navCtrl.push(MapaPage)
+  }
+
+
   updateName(){
     let prompt = this.alertCtrl.create({
       title: 'Cambiar Nombre',
@@ -215,9 +222,6 @@ export class AjustesPage {
     });
   }
 
-  changeloc(){
-
-  }
 
 }
 

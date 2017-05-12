@@ -28,7 +28,8 @@ export class ReviewsPage {
   save(){
 
     this.storage.get('user').then((data) => {
-      if(this.rating=="undefined"){
+      console.log(this.rating)
+      if(this.rating="undefined"){
           this.rating=0;
       }
       let review = {

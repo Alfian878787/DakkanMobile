@@ -23,6 +23,8 @@ import {OPerfilPage} from "../pages/OPerfil/operfil";
 import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
 import { ReviewsPage} from '../pages/Reviews/reviews';
 import { MapaPage} from '../pages/Mapa/mapa';
+import {AutocompletePage} from "../pages/AutcompletePage/autocompletepage";
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {MomentModule} from 'angular2-moment';
 
 
@@ -42,7 +44,9 @@ import {MomentModule} from 'angular2-moment';
     MapaPage,
     PerfOpinionPage,
     PerfAnunciosPage,
-    AnuncioPerfilPage
+    AnuncioPerfilPage,
+    MapaPage,
+    AutocompletePage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ import {MomentModule} from 'angular2-moment';
     MapaPage,
     PerfOpinionPage,
     PerfAnunciosPage,
-    AnuncioPerfilPage
+    AnuncioPerfilPage,
+    MapaPage,
+    AutocompletePage
   ],
   providers: [
     StatusBar,
@@ -76,6 +82,7 @@ import {MomentModule} from 'angular2-moment';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     GoogleMaps,
+    NativeGeocoder
 
   ]
 })
