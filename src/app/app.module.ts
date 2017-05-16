@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
 import { MyApp } from './app.component';
 import { PerfilPage } from '../pages/Perfil/perfil';
 import { PerfOpinionPage } from '../pages/PerfOpinion/perfopinion';
@@ -26,6 +25,7 @@ import { MapaPage} from '../pages/Mapa/mapa';
 import {AutocompletePage} from "../pages/AutcompletePage/autocompletepage";
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {MomentModule} from 'angular2-moment';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -82,7 +82,8 @@ import {MomentModule} from 'angular2-moment';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     GoogleMaps,
-    NativeGeocoder
+    NativeGeocoder,
+    Geolocation
 
   ]
 })

@@ -44,28 +44,29 @@ export class AnuncioPage {
    this.timestamp = this.adv.id.toString().substring(0,8);
    this.date = new Date( parseInt( this.timestamp, 16 ) * 1000 );
     platform.ready().then(() => {
-      this.loadMap();
+      this.getpos(this.adv.location);
     });
   }
 
-  loadMap(){
-
+  loadMap(pos){
+    let location ={lat:pos.latitude,lng:pos.longitude};
     this.map = new google.maps.Map(document.getElementById('map'),{
       zoom:16,
       center:location
     });
-    //this.getpos(this.adv.location);
-    //let loc={lat:this.address.latitude,lng:this.address.longitude};
-   //let marker=new google.maps.Marker({
-     // position:loc,
-    //  map:this.map
-   // });
   }
   getpos(pos) {
     this.geo.forwardGeocode(pos).then((res:NativeGeocoderForwardResult)=> {
-      this.address=res;
+      this.addMarker(res);
     })
-
+  }
+  addMarker(pos){
+    this.loadMap(pos);
+    let loc={lat:pos.latitude,lng:pos.longitude}
+    let marker=new google.maps.Marker({
+      position:loc,
+      map:this.map
+    });
   }
   goodToast(message) {
     let toast = this.toastCtrl.create({

@@ -7,6 +7,7 @@ import { Camera } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import {AnunciosPage} from "../Anuncios/anuncios";
+import {MapaPage} from "../Mapa/mapa";
 
 @Component({
   selector: 'page-list',
@@ -88,37 +89,41 @@ export class NewAnuncioPage {
     this.storage.get('user').then((data2) => {
 
       if (data2 != null) {
-
         var nameimg = data2._id+"-"+this.title;
         this.img.append('file',this.img64);
         this.img.append('name',nameimg);
-        var data = {
-          title: this.title,
-          owner: data2._id,
-          description: this.description,
-          exchange: this.exchange,
-          category: this.category
-        };
-
-        this.http.post("http://147.83.7.156:3500/uploadadv",this.img).map(res=>res.toString()).subscribe(
-          result=> {
-            if (result = "File is uploaded") {
-              this.http.post("http://147.83.7.156:3500/addAdv", data).map(res => res.json()).subscribe(
-                result => {
-                  if (result.toString() != "500") {
-                    this.goodToast("Anuncio Añadido");
-                    this.navCtrl.setRoot(AnunciosPage, "hola", {animate: true, direction: 'back'});
-                  }
-                  else {
-                    this.goodToast("Rellena los campos correctamente");
-                  }
-                },
-                error => this.goodToast("Error al subir el anuncio")
-              );
-            }
-          },
+        if(data2.location) {
+          var data = {
+            title: this.title,
+            owner: data2._id,
+            description: this.description,
+            exchange: this.exchange,
+            category: this.category,
+            location: data2.location
+          };
+          this.http.post("http://147.83.7.156:3500/uploadadv",this.img).map(res=>res.toString()).subscribe(
+            result=> {
+              if (result = "File is uploaded") {
+                this.http.post("http://147.83.7.156:3500/addAdv", data).map(res => res.json()).subscribe(
+                  result => {
+                    if (result.toString() != "500") {
+                      this.goodToast("Anuncio Añadido");
+                      this.navCtrl.setRoot(AnunciosPage, "hola", {animate: true, direction: 'back'});
+                    }
+                    else {
+                      this.goodToast("Rellena los campos correctamente");
+                    }
+                  },
+                  error => this.goodToast("Error al subir el anuncio")
+                );
+              }
+            },
             error => this.goodToast("Error al subir imagen")
-        );
+          );
+        }
+        else{
+          this.goodToast("Primero establece un lugar de intercambio")
+        }
         this.img="";
       }
     });
