@@ -1,11 +1,14 @@
 import {BrowserModule} from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+
 import { MyApp } from './app.component';
+import {CUSTOM_ELEMENTS_SCHEMA }      from '@angular/core';
 import { PerfilPage } from '../pages/Perfil/perfil';
 import { PerfOpinionPage } from '../pages/PerfOpinion/perfopinion';
 import { PerfAnunciosPage } from '../pages/PerfAnuncios/perfanuncios';
 import { MessagesPage } from '../pages/Mensajes/messages';
+import { ChatPage } from '../pages/Chat/chat';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
 import { InicioPage} from '../pages/Inicio/inicio';
@@ -26,6 +29,8 @@ import {AutocompletePage} from "../pages/AutcompletePage/autocompletepage";
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {MomentModule} from 'angular2-moment';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Facebook } from '@ionic-native/facebook';
+
 
 
 @NgModule({
@@ -33,6 +38,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     PerfilPage,
     MessagesPage,
+    ChatPage,
     FavoritosPage,
     AjustesPage,
     InicioPage,
@@ -56,11 +62,13 @@ import { Geolocation } from '@ionic-native/geolocation';
     MomentModule
 
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     PerfilPage,
     MessagesPage,
+    ChatPage,
     FavoritosPage,
     AjustesPage,
     InicioPage,
@@ -79,6 +87,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     GoogleMaps,

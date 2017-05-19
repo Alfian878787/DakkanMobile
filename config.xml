@@ -40,4 +40,5 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCDfKm8_KcKksGUuSYC1QFZ4he4dD9jPng" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDl7l9_xYJ0hsAsOJDvtLGM8WC-998w_tA" />
     </plugin>
+    <plugin name="cordova-plugin-nativestorage" spec="~2.2.2" />
 </widget>

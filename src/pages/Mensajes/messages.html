@@ -8,16 +8,20 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-list-header>
+      Chats
+    </ion-list-header>
+    <ion-item  *ngFor="let chat of chats" (click)="chatdetail(chat);">
+      <ion-avatar item-start>
+        <img src="http://147.83.7.156:3500/images/150x/{{chat.advurl}}.png">
+      </ion-avatar>
+      <h2>{{chat.advname}}</h2>
+      <h3>{{chat.chatnombre}}</h3>
+      <p>{{chat.chats[chat.chats.length-1].text}}</p>
+    </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>

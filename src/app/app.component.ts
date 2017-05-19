@@ -54,6 +54,9 @@ export class MyApp {
       { title: 'Ajustes', component: AjustesPage }
     ];
 
+
+
+
   }
 
   logout(){
