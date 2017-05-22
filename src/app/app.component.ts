@@ -8,6 +8,7 @@ import { MessagesPage } from '../pages/Mensajes/messages';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
 import { InicioPage} from '../pages/Inicio/inicio';
+import {TreatsPage} from '../pages/Treats/treats';
 import { AnunciosPage} from '../pages/Anuncios/anuncios';
 
 
@@ -51,6 +52,7 @@ export class MyApp {
       { title: 'Perfil', component: PerfilPage },
       { title: 'Messages', component: MessagesPage },
       { title: 'Favoritos', component: FavoritosPage },
+      { title: 'Tratos realizados', component:TreatsPage},
       { title: 'Ajustes', component: AjustesPage }
     ];
 

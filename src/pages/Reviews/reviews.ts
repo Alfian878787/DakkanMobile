@@ -40,13 +40,20 @@ export class ReviewsPage {
         reviewername:data.name,
         reviewerid:data._id
       };
-      this.http.post('http://147.83.7.156:3500/postreview',review).subscribe(res => {
-
-      });
+      this.http.post('http://147.83.7.156:3500/postreview',review).map(res=>{
+        let body =res.text();
+        if(body=="ok"){
+          this.goodToast("Review subida correctamente")
+        }
+        else{
+          this.goodToast("Algo falló")
+        }
+      }).subscribe();
       this.navCtrl.pop();
     });
 
   }
+
 
   close() {
     this.navCtrl.pop()

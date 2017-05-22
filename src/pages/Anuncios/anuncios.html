@@ -8,6 +8,11 @@
 </ion-header>
 <ion-content no-padding="" >
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
   <ion-grid no-padding="" margin="0">
     <ion-row *ngFor="let row of grid" no-margin="" no-padding="" style="height:150%">
       <ion-col  width-50 *ngFor="let image of row" no-margin="" no-padding="" style="height:150%">

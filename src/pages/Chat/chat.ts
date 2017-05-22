@@ -66,6 +66,7 @@ export class ChatPage {
   treatdone(){
     var data=({
       chat:this.room,
+      advid:this.navParams.get('chat').advid,
       buyer: this.navParams.get('chat').buyer,
       seller:this.navParams.get('chat').sellername,
       closed:true

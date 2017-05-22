@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {NavController, NavParams, Platform, ToastController, AlertController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import {GoogleMap, GoogleMaps} from "@ionic-native/google-maps";
@@ -22,7 +22,7 @@ export class AnuncioPage {
   fav: boolean;
   address:any;
 
-  constructor(private geo:NativeGeocoder,public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
+  constructor(public alertCtrl: AlertController,private geo:NativeGeocoder,public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
     this.fav = true;
     this.page = navParams.get('page');
@@ -123,4 +123,62 @@ export class AnuncioPage {
       }
     }
   }
+  sendOffer() {
+
+    let prompt = this.alertCtrl.create({
+      title: 'Oferta',
+      message: "Introduce tu oferta",
+      inputs: [
+        {
+          name: 'text',
+          placeholder: 'Escribe aqui tu oferta',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            if (data.text == "") {
+              this.goodToast("Las contraseñas no coinciden")
+            }
+            else {
+              this.storage.get('user').then((data2) => {
+                if (data2 != null) {
+                  var data3 = {
+                    advid: this.adv.id,
+                    userid: data2._id,
+                    sellerid: this.adv.owner,
+                    advurl: this.adv.imageurl,
+                    sellername: this.adv.ownername,
+                    buyer: data2.name,
+                    advname: this.adv.title,
+                    offer: data.text
+                  };
+                  this.http.post("http://147.83.7.156:3500/sendOffer", data3).map(res => {
+                    let response = res.text();
+                    if (response == "200") {
+                      this.goodToast("Mensaje enviado correctamente");
+                      this.navCtrl.setRoot(AnunciosPage);
+                    }
+                    else {
+                      this.goodToast("Error al hacer la oferta");
+                    }
+                  }).subscribe();
+                }
+              });
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }
+

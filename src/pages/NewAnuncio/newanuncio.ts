@@ -96,6 +96,7 @@ export class NewAnuncioPage {
           var data = {
             title: this.title,
             owner: data2._id,
+            active:true,
             description: this.description,
             exchange: this.exchange,
             category: this.category,

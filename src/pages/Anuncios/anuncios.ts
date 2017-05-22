@@ -54,6 +54,13 @@ export class AnunciosPage {
     this.navCtrl.push(AnuncioPage,{adv:image,page:"AnunciosPage"},{animate:true, direction:'forward'})
 
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 
 
 }

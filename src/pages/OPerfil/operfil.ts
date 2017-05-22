@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  ActionSheetController, NavController, LoadingController, ToastController,
-  NavParams
+import {ActionSheetController, NavController, LoadingController, ToastController, NavParams
 } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
@@ -19,17 +17,30 @@ export class OPerfilPage {
 adv:any;
 reviews: any;
 user:any;
+opinar:Boolean;
 myDate:Date;
 
 
   constructor(public moment: MomentModule,public navParams: NavParams,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
     this.adv = navParams.get('adv');
+    this.opinar = false;
     let timestamp = this.adv.owner.toString().substring(0,8);
     this.myDate = new Date(parseInt( timestamp, 16 ) * 1000 );
     this.getReviews();
     this.storage.get('user').then((data) => {
-      this.user=data.name
+      this.user=data.name;
+      let data2={name:this.user};
+      this.http.post('http://147.83.7.156:3500/reviewscount',data2)
+        .map(res => res.json())
+        .subscribe(result => {
+          for(var i=0;i<result.length;i++){
+            if(result[i].name==this.adv.ownername){
+              this.opinar = true;
+            }
+          }
+        });
     });
+
     this.reviews="";
   }
   doRefresh(refresher) {

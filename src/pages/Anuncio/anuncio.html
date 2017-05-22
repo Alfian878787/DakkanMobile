@@ -15,7 +15,7 @@
         <img src="http://147.83.7.156:3500/imagesprof//{{adv.owner}}.png" (click)="oprofile()">
       </ion-avatar>
       <h2>{{adv.ownername}}</h2>
-      <p>Lugar donde se vende</p>
+      <p>{{adv.location}}</p>
     </ion-item>
 
     <img src="http://147.83.7.156:3500/images//{{adv.imageurl}}.png">
@@ -37,7 +37,7 @@
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button icon-left clear small>
+        <button ion-button icon-left clear small (click)="sendOffer();">
           <ion-icon name="text"></ion-icon>
           <div>Send Message</div>
         </button>

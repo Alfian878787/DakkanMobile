@@ -25,6 +25,7 @@ import {OPerfilPage} from "../pages/OPerfil/operfil";
 import {NewAnuncioPage} from '../pages/NewAnuncio/newanuncio';
 import { ReviewsPage} from '../pages/Reviews/reviews';
 import { MapaPage} from '../pages/Mapa/mapa';
+import {TreatsPage} from '../pages/Treats/treats';
 import {AutocompletePage} from "../pages/AutcompletePage/autocompletepage";
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {MomentModule} from 'angular2-moment';
@@ -39,6 +40,7 @@ import { Facebook } from '@ionic-native/facebook';
     PerfilPage,
     MessagesPage,
     ChatPage,
+    TreatsPage,
     FavoritosPage,
     AjustesPage,
     InicioPage,
@@ -75,6 +77,7 @@ import { Facebook } from '@ionic-native/facebook';
     AnunciosPage,
     AnuncioPage,
     OPerfilPage,
+    TreatsPage,
     NewAnuncioPage,
     ReviewsPage,
     MapaPage,

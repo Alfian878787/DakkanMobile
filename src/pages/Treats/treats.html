@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Favoritos</ion-title>
+    <ion-title>Tratos cerrados</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -28,20 +28,6 @@
         {{row.description}}
       </p>
     </ion-card-content>
-   <ion-row>
-     <ion-col>
-       <button ion-button icon-left clear small (click)="unfavorito(row);">
-         <ion-icon name="close"></ion-icon>
-         <div>Unfavourite</div>
-       </button>
-     </ion-col>
-     <ion-col>
-       <button ion-button icon-left clear small>
-         <ion-icon name="text"></ion-icon>
-         <div>Send Message</div>
-       </button>
-     </ion-col>
-   </ion-row>
   </ion-card>
   </ion-row>
 </ion-content>
