@@ -3,13 +3,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Chat</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div class="speech-bubble" *ngFor="let message of chats">
-    <div class="arrow bottom right"></div>
+  <div *ngFor="let message of chats">
       {{message.author}} dice: {{message.text}}
   </div>
 </ion-content>

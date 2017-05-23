@@ -46,6 +46,7 @@ export class ChatPage {
   send(message) {
     this.storage.get('user').then((data) => {
       var payload = {
+        room: this.room,
         author: data.name,
         text: this.message
       };
