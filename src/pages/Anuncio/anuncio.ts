@@ -21,13 +21,18 @@ export class AnuncioPage {
   map:any;
   fav: boolean;
   address:any;
+  del:boolean;
 
   constructor(public alertCtrl: AlertController,private geo:NativeGeocoder,public events: Events, private googleMaps: GoogleMaps,public platform: Platform,public navCtrl: NavController, public navParams: NavParams,public storage:Storage,private toastCtrl: ToastController,public http: Http) {
     this.adv = navParams.get('adv');
     this.fav = true;
+    this.del = false;
     this.page = navParams.get('page');
     this.storage.get('user').then((data) => {
       if(data != null) {
+        if(data.name==this.adv.ownername){
+          this.del=true;
+        }
         var data2 = {name: data.name, advid:this.adv.id};
         http.post("http://147.83.7.156:3500/getfavorite",data2).map(res =>{
               let response = res.text();
@@ -112,6 +117,19 @@ export class AnuncioPage {
         }).subscribe()
       }
     });
+  }
+  deleteADV(){
+
+    var data2 = {userid: this.adv.owner, advid: this.adv.id};
+    this.http.post("http://147.83.7.156:3500/deleteadv", data2).map(res => {
+      let result = res.text()
+      if (result == "Deleted") {
+        this.goodToast("Eliminado");
+        this.back();
+      }
+    }).subscribe()
+
+
   }
   back(){
     if(this.page == "AnunciosPage") {

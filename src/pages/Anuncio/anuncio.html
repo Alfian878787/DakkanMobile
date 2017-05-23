@@ -48,6 +48,14 @@
         </ion-note>
       </ion-col>
     </ion-row>
+  <ion-row  center text-center>
+    <ion-col>
+      <button ion-button icon-left clear *ngIf="del!=false" small (click)="deleteADV();">
+        <ion-icon name="trash"></ion-icon>
+        <div>Delete</div>
+      </button>
+    </ion-col>
+  </ion-row>
     <div id="map" style="width: 200px; height: 200px;"></div>
   </ion-card>
 

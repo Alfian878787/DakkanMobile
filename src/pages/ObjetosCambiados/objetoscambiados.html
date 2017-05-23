@@ -1,0 +1,31 @@
+<ion-content>
+  <div id="content" style="margin-top: 70px;" >
+    <div id="profile-info">
+      <img id="profile-image" src="http://147.83.7.156:3500/imagesprof//{{user._id}}.png">
+      <h3 id="profile-name">{{user.name}}</h3>
+      <span id="profile-description">User since <time>{{date | amTimeAgo}}</time></span>
+    </div>
+  </div>
+  <ion-row *ngFor="let row of grid" no-margin="" no-padding="">
+ <ion-card>
+   <ion-item>
+     <ion-avatar item-left>
+       <img src="http://147.83.7.156:3500/imagesprof//{{row.owner}}.png">
+     </ion-avatar>
+     <h2>{{row.ownername}}</h2>
+     <p>{{row.location}}</p>
+   </ion-item>
+
+   <img src="http://147.83.7.156:3500/images/150x/{{row.imageurl}}.png" style="width: 100%">
+
+    <ion-card-content>
+      <ion-card-title>
+        {{row.title}}
+      </ion-card-title>
+      <p>
+        {{row.description}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  </ion-row>
+</ion-content>

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  ActionSheetController, NavController, LoadingController, ToastController,
-  NavParams
-} from 'ionic-angular';
+import {ActionSheetController, NavController, LoadingController, ToastController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';

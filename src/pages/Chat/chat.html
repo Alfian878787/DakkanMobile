@@ -7,19 +7,23 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content #content padding class="chatPage">
-
-  <ion-list no-lines>
-  <ion-item *ngFor="let message of chats">{{message.author}} dice: {{message.text}}</ion-item>
-  </ion-list>
-  <ion-input type="text"  [(ngModel)]="message"></ion-input>
-  <button round (click)="send()">
-    <ion-icon name="send"></ion-icon>
-  </button>
-  <button ion-button icon-left clear *ngIf="sellert!=false" small (click)="treatdone();">
-    <ion-icon name="done-all"></ion-icon>
-    <div>Marcar trato como cerrado</div>
-  </button>
+<ion-content>
+  <div class="speech-bubble" *ngFor="let message of chats">
+    <div class="arrow bottom right"></div>
+      {{message.author}} dice: {{message.text}}
+  </div>
 </ion-content>
 
-
+<ion-footer>
+  <ion-toolbar>
+      <ion-input type="text"  [(ngModel)]="message" placeholder="Mensaje..."></ion-input>
+    <button ion-button round (click)="send()">
+      <ion-icon name="send"></ion-icon>
+      Enviar
+    </button>
+    <button ion-button icon-left clear *ngIf="sellert!=false" small (click)="treatdone();">
+      <ion-icon name="done-all"></ion-icon>
+      <div>Marcar trato como cerrado</div>
+    </button>
+  </ion-toolbar>
+</ion-footer>

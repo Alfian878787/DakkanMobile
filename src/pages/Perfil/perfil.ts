@@ -8,6 +8,7 @@ import {Http} from "@angular/http";
 import {PerfOpinionPage} from "../PerfOpinion/perfopinion";
 import 'rxjs/add/operator/map';
 import {PerfAnunciosPage} from "../PerfAnuncios/perfanuncios";
+import {ObjetosCambiadosPage} from "../ObjetosCambiados/objetoscambiados";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class PerfilPage {
   reviews: any;
   PerfOpinion: any = PerfOpinionPage;
   Anuncios: any = PerfAnunciosPage;
+  Tratos: any = ObjetosCambiadosPage;
 
   constructor(public navParams: NavParams,public http: Http,public storage:Storage,public navCtrl: NavController, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 

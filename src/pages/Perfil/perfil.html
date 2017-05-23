@@ -16,7 +16,8 @@
     <ion-tabs>
       <!-- Indicates with tabsPage should handle each tab here -->
       <ion-tab [root]="PerfOpinion"[rootParams]="user" tabTitle="Opiniones" tabIcon="chatbubbles"></ion-tab>
-      <ion-tab [root]="Anuncios" [rootParams]="user" tabTitle="Anuncios" tabIcon="albums"></ion-tab>
+      <ion-tab [root]="Anuncios" [rootParams]="user" tabTitle="Anuncios activos" tabIcon="albums"></ion-tab>
+      <ion-tab [root]="Tratos" [rootParams]="user" tabTitle="Anuncios cerrados" tabIcon="filing"></ion-tab>
     </ion-tabs>
 </ion-content>
 
