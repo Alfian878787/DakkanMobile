@@ -7,18 +7,20 @@ import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import {AnuncioPage} from '../Anuncio/anuncio';
 import {NewAnuncioPage} from "../NewAnuncio/newanuncio";
+import { ModalController } from 'ionic-angular';
+import { FilterModalPage } from '../Filter/filter-modal';
 
 @Component({
   selector: 'page-list',
   templateUrl: 'anuncios.html'
 })
 export class AnunciosPage {
-  items: Array<{title: string}>;
   grid: Array<Array<string>>;
-  constructor(public events:Events, public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
-
-    this.items = [];
-    http.get("http://147.83.7.156:3500/allAdvs").subscribe(data => {
+  constructor(public modalCtrl: ModalController,public events:Events, public alertCtrl: AlertController,public http: Http,public storage:Storage,public navCtrl: NavController, private camera: Camera, public toastCtrl: ToastController, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
+    this.initializeItems();
+  }
+  initializeItems(){
+    this.http.get("http://147.83.7.156:3500/allAdvs").subscribe(data => {
 
       this.grid = Array(Math.ceil(data.json().length/2)); //MATHS!
       let rowNum = 0;
@@ -37,7 +39,7 @@ export class AnunciosPage {
     }, error => {
       console.log("error")
     });
-  }
+}
 
   addAdv(){
     this.navCtrl.push(NewAnuncioPage)
@@ -61,6 +63,30 @@ export class AnunciosPage {
       refresher.complete();
     }, 2000);
   }
+  filtro(){
+    let myModal = this.modalCtrl.create(FilterModalPage);
 
+    myModal.onDidDismiss(data => {
+      if(data != undefined) {
+        this.grid = Array(Math.ceil(data.length / 2)); //MATHS!
+        let rowNum = 0;
+
+        for (let i = 0; i < data.length; i += 2) {
+          this.grid[rowNum] = Array(2);
+          if (data[i]) {
+
+            this.grid[rowNum][0] = data[i]
+          }
+          if (i + 1 < data.length) {
+            this.grid[rowNum][1] = data[i + 1]
+          }
+          rowNum++;
+        }
+      }
+    });
+
+    myModal.present();
+
+  }
 
 }

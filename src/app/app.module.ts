@@ -11,6 +11,7 @@ import { MessagesPage } from '../pages/Mensajes/messages';
 import { ChatPage } from '../pages/Chat/chat';
 import { FavoritosPage} from '../pages/Favoritos/favoritos';
 import { AjustesPage} from '../pages/Ajustes/ajustes';
+import { FilterModalPage} from '../pages/Filter/filter-modal';
 import { InicioPage} from '../pages/Inicio/inicio';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,6 +32,7 @@ import {AutocompletePage} from "../pages/AutcompletePage/autocompletepage";
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {MomentModule} from 'angular2-moment';
 import { Geolocation } from '@ionic-native/geolocation';
+
 import { Facebook } from '@ionic-native/facebook';
 
 
@@ -45,6 +47,7 @@ import { Facebook } from '@ionic-native/facebook';
     FavoritosPage,
     AjustesPage,
     InicioPage,
+    FilterModalPage,
     AnunciosPage,
     ObjetosCambiadosPage,
     AnuncioPage,
@@ -81,6 +84,7 @@ import { Facebook } from '@ionic-native/facebook';
     ObjetosCambiadosPage,
     OPerfilPage,
     TreatsPage,
+    FilterModalPage,
     NewAnuncioPage,
     ReviewsPage,
     MapaPage,

@@ -12,7 +12,6 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-
   <ion-grid no-padding="" margin="0">
     <ion-row *ngFor="let row of grid" no-margin="" no-padding="" style="height:150%">
       <ion-col  width-50 *ngFor="let image of row" no-margin="" no-padding="" style="height:150%">
@@ -34,5 +33,8 @@
   </ion-grid>
   <ion-fab right bottom>
     <button ion-fab fab-size="100px" color="secondary" (click)="addAdv()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-fab left bottom>
+    <button ion-fab fab-size="100px" (click)="filtro()"><ion-icon name="search"></ion-icon></button>
   </ion-fab>
 </ion-content>
