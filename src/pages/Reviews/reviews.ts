@@ -16,6 +16,7 @@ export class ReviewsPage {
 
   constructor(public storage:Storage,public http: Http,public navCtrl: NavController, public navParams: NavParams,private toastCtrl: ToastController) {
     this.usrname = navParams.get('usrname');
+    this.rating=0;
   }
   goodToast(message) {
     let toast = this.toastCtrl.create({
@@ -29,9 +30,6 @@ export class ReviewsPage {
 
     this.storage.get('user').then((data) => {
       console.log(this.rating)
-      if(this.rating="undefined"){
-          this.rating=0;
-      }
       let review = {
         usrname: this.usrname,
         title: this.title,
