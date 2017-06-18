@@ -51,7 +51,7 @@ export class AnunciosPage {
             return a.dist - b.dist;
           });
           console.log(catadv);
-          console.log(catadv[0].adv);
+          console.log(catadv[0]);
           console.log(catadv.length);
 
           this.grid = Array(Math.ceil(catadv.length / 2)); //MATHS!
