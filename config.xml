@@ -81,6 +81,10 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1798132503847698" />
+        <variable name="APP_NAME" value="Dakkan" />
+    </plugin>
     <plugin name="cordova-plugin-googlemaps" spec="~1.4.0">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCDfKm8_KcKksGUuSYC1QFZ4he4dD9jPng" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDl7l9_xYJ0hsAsOJDvtLGM8WC-998w_tA" />
